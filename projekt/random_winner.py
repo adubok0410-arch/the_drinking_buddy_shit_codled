@@ -10,7 +10,7 @@ for i in range(number_of_participants):
     list_of_participants.append(name)
     participant_number += 1
     
-number_of_winners = int(input('Введите количество побидителей: '))
+number_of_winners = int(input('Введите количество победителя(-ей): '))
 list_of_winners = []
 
 for i in range(number_of_winners):
