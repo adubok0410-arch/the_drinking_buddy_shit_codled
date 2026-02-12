@@ -11,7 +11,32 @@ class Inventory:
     price: int
     condition: str
     quantity_in_stock: int
+    
+GLOBAL_INVENTORY_ID = 0
 
+def input_inventory():
+    print("Введите данные инвентаря.\n")
+
+    name = input("Название (до 20 символов): ")
+    sport = input("Вид спорта (до 15 символов): ")
+    material = input("Материал (до 15 символов): ")
+    weight = int(input("Вес (целое число): "))
+    size = input("Размер (до 10 символов): ")
+    price = int(input("Цена (целое число): "))
+    condition = input("Состояние (до 10 символов): ")
+    quantity = int(input("Количество на складе (целое число): "))
+                   
+    return Inventory(
+        0, name, sport, material, weight, size, price, condition, quantity
+    )
+
+def add_inventory_to_list(inventories, inventory):
+    global GLOBAL_INVENTORY_ID
+    GLOBAL_INVENTORY_ID += 1
+
+    inventory.id = GLOBAL_INVENTORY_ID
+
+    inventories.append(inventory)
 
 def search_by_type_and_weight(inventory: list[Inventory]):
     while True:
