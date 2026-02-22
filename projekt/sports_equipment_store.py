@@ -6,7 +6,7 @@ class Inventory:
     name: str
     sport_type: str
     material: str
-    weight: int
+    weight: int 
     size: str
     price: int
     condition: str
@@ -93,10 +93,10 @@ def inventory_sort(inventory: list[Inventory]):
             choice_sort = input("\nВыберите действие: ").strip()
 
             if choice_sort == '1':
-                inventory_sorted = sorted([item.price for item in inventory])
+                inventory_sorted = sorted(inventory, key=lambda x: x.price)
 
             if choice_sort == '2':
-                inventory_sorted = sorted([item.price for item in inventory], reverse=True)
+                inventory_sorted = sorted(inventory, key=lambda x: x.price, reverse=True)
         
         elif choice == '2':
             print("1: по возрастанию.")
@@ -104,10 +104,10 @@ def inventory_sort(inventory: list[Inventory]):
             choice_sort = input("\nВыберите действие: ").strip()
 
             if choice_sort == '1':
-                inventory_sorted = sorted([item.quantity_in_stock for item in inventory])
+                inventory_sorted = sorted(inventory, key=lambda x: x.quantity)
 
             if choice_sort == '2':
-                inventory_sorted = sorted([item.quantity_in_stock for item in inventory], reverse=True)
+                inventory_sorted = sorted(inventory, key=lambda x: x.quantity, reverse=True)
 
         elif choice == "0":
             return 
@@ -156,3 +156,30 @@ def write_off(inventory: list[Inventory]):
 def total_cost(inventory: list[Inventory]):
     result = sum([item.price * item.quantity_in_stock for item in inventory])
     print(f'Общая стоимость склада = {result}\n')
+
+def new_output(inventory: list[Inventory]):
+    while True:
+        choice = input("Желаете ли вы выволнить действие: ").strip()
+
+        if choice.lower() == 'да':
+            result = [item for item in inventory if item.condition.strip().lower() == "новый"]
+            return result
+        else:
+            return
+
+def mark_requires_repair(inventory: list[Inventory]):
+    for item in inventory:
+        if item.condition.strip().lower() != "новый" and item.condition.strip().lower() != "требует ремонта":
+            item.condition = "требует ремонта"
+    return inventory
+
+def heaviest_item(inventory: list[Inventory]):
+    if not inventory:
+        return None
+    return max(inventory, key=lambda x: x.weight)
+
+def remove_zero_quantity(inventory: list[Inventory]):
+    for item in inventory[:]:
+        if item.quantity == 0:
+            inventory.remove(item)
+    return inventory
