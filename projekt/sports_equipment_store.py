@@ -207,8 +207,8 @@ def main():
         choice = input("Выберите действие: ").strip()
 
         if choice == "1":
-            input = input_inventory()
-            add_inventory_to_list(items, input)
+            new_inventory = input_inventory()
+            add_inventory_to_list(items, new_inventory)
             print("Добавлено.")
         elif choice == "2":
             print_items(items)
