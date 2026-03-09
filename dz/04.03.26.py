@@ -4,6 +4,8 @@ class Item:
     category: str
 
     def __init__(self, product_name: str, price: float, category: str) -> None:
+        if price < 0:
+            raise ValueError("Цена не может быть отрицательной")
         self.product_name = product_name
         self.price = price
         self.category = category
@@ -25,9 +27,10 @@ class ShoppingCart:
 
     def add_item(self, item: Item) -> None:
         self.products.append(item)
-        
+
     def remove_item_by_name(self, name: str) -> None:
         self.products = [item for item in self.products if item.product_name != name]
-            
+
     def get_total(self) -> float:
         return sum(item.price for item in self.products)
+
