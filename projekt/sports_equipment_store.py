@@ -189,7 +189,6 @@ def remove_zero_quantity(inventory: list[Inventory]):
 
 def main():
     items: list[Inventory] = []
-
     while True:
         print("\nМеню:")
         print("1) Добавить инвентарь")
