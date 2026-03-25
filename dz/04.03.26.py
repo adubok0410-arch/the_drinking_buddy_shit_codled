@@ -33,4 +33,3 @@ class ShoppingCart:
 
     def get_total(self) -> float:
         return sum(item.price for item in self.products)
-
