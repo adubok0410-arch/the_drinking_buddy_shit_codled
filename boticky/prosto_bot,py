@@ -1,0 +1,28 @@
+import telebot
+import telebot.types
+import webbrowser
+
+TOKEN = '8711719230:AAE5oDKYYCxmHWL3EIq7Z7CFP9KsoXp50mw'
+
+bot = telebot.TeleBot(TOKEN)
+
+@bot.message_handler(commands=['site'])
+def site(message: telebot.types.Message):
+    webbrowser.open('https://itproger.com')
+
+@bot.message_handler(commands=['start'])
+def command_start_handler(message: telebot.types.Message):
+    bot.send_message(
+        message.chat.id, 
+        'Привет вупсень'
+    )
+
+@bot.message_handler()
+def info(message: telebot.types.Message):
+    if message.text.lower() == 'какащкэ':
+        bot.send_message(
+            message.chat.id,
+            'Да ты шаришь'
+        )
+
+bot.polling(non_stop=True)

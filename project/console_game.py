@@ -11,19 +11,15 @@ import time
 def one_line(text):
 
     for i in text:
-        
         print(i, end='', flush=True)
         time.sleep(0.05)
-    
     print()
 
 def smooth_text(text):
 
-    for i in text:
-        
+    for i in text:     
         print(i, sep='\n', flush=True)
         time.sleep(0.1)
-    
     print()
 
 text_greetings = (
